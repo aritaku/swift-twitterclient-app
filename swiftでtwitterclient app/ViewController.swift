@@ -28,6 +28,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         self.twitterTimeLine()
+        
+        //pull to refresh
+        var refreshControll = UIRefreshControl()
+        refreshControll.addTarget(self, action: Selector(nilLiteral: twitterTimeLine()), forControlEvents: UIControlEvents.ValueChanged)
+        
+        // resize cell height automatically
+        self.timelineTableview.estimatedRowHeight = 100
+        self.timelineTableview.rowHeight = UITableViewAutomaticDimension
     }
     
     override func didReceiveMemoryWarning() {

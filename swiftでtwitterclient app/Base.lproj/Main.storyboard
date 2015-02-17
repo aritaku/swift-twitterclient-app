@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NDg-M1-MuM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--TwitterTimaLine-->
@@ -26,28 +28,52 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jFA-DU-b8N" id="uJp-2I-jzZ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="739-LI-MAZ">
-                                                    <rect key="frame" x="8" y="13" width="121" height="120"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="739-LI-MAZ">
+                                                    <rect key="frame" x="8" y="19" width="62" height="61"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="chl-fe-fnY"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="ghD-TY-e9J"/>
+                                                        <constraint firstAttribute="width" secondItem="739-LI-MAZ" secondAttribute="height" multiplier="121:120" id="nWg-0w-vbD"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UserNameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rb4-Ub-1ky">
-                                                    <rect key="frame" x="168" y="13" width="215" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UserNameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rb4-Ub-1ky">
+                                                    <rect key="frame" x="78" y="8" width="127" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="tweetTextView" translatesAutoresizingMaskIntoConstraints="NO" id="HXW-kE-ZVi">
-                                                    <rect key="frame" x="168" y="44" width="424" height="91"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="tweetTextView" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXW-kE-ZVi">
+                                                    <rect key="frame" x="78" y="37" width="514" height="107"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                                 </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="@UserIDName" translatesAutoresizingMaskIntoConstraints="NO" id="4nW-4p-7xK">
-                                                    <rect key="frame" x="318" y="13" width="307" height="33"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="@UserIDName" translatesAutoresizingMaskIntoConstraints="NO" id="4nW-4p-7xK">
+                                                    <rect key="frame" x="203" y="5" width="144" height="24"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Rb4-Ub-1ky" firstAttribute="leading" secondItem="739-LI-MAZ" secondAttribute="trailing" constant="90" id="0yA-DU-mWw"/>
+                                                <constraint firstItem="739-LI-MAZ" firstAttribute="leading" secondItem="uJp-2I-jzZ" secondAttribute="leadingMargin" constant="5" id="3Nk-I7-BY6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HXW-kE-ZVi" secondAttribute="bottom" constant="2" id="BKA-C3-u3k"/>
+                                                <constraint firstItem="HXW-kE-ZVi" firstAttribute="top" secondItem="4nW-4p-7xK" secondAttribute="bottom" constant="2" id="Dz4-Jk-LeC"/>
+                                                <constraint firstItem="Rb4-Ub-1ky" firstAttribute="leading" secondItem="739-LI-MAZ" secondAttribute="trailing" constant="18" id="GH5-7a-Vs1"/>
+                                                <constraint firstItem="4nW-4p-7xK" firstAttribute="leading" secondItem="739-LI-MAZ" secondAttribute="trailing" constant="133" id="HnR-rZ-qcT"/>
+                                                <constraint firstItem="HXW-kE-ZVi" firstAttribute="trailing" secondItem="uJp-2I-jzZ" secondAttribute="trailingMargin" id="L7Y-e2-lBt"/>
+                                                <constraint firstItem="Rb4-Ub-1ky" firstAttribute="top" secondItem="uJp-2I-jzZ" secondAttribute="topMargin" constant="5" id="QNA-KN-Ykc"/>
+                                                <constraint firstItem="739-LI-MAZ" firstAttribute="top" secondItem="uJp-2I-jzZ" secondAttribute="topMargin" constant="7" id="Rpp-cs-m9s"/>
+                                                <constraint firstItem="4nW-4p-7xK" firstAttribute="top" secondItem="Rb4-Ub-1ky" secondAttribute="top" id="Tva-dJ-uhi"/>
+                                                <constraint firstItem="4nW-4p-7xK" firstAttribute="leading" secondItem="Rb4-Ub-1ky" secondAttribute="trailing" constant="5" id="XlR-vv-CWr"/>
+                                                <constraint firstItem="4nW-4p-7xK" firstAttribute="top" secondItem="uJp-2I-jzZ" secondAttribute="topMargin" constant="2" id="dYA-9k-R8L"/>
+                                                <constraint firstItem="739-LI-MAZ" firstAttribute="top" secondItem="uJp-2I-jzZ" secondAttribute="topMargin" constant="5" id="kio-sU-RYo"/>
+                                                <constraint firstItem="HXW-kE-ZVi" firstAttribute="leading" secondItem="739-LI-MAZ" secondAttribute="trailing" constant="5" id="qKh-9j-1Tb"/>
+                                                <constraint firstItem="739-LI-MAZ" firstAttribute="leading" secondItem="uJp-2I-jzZ" secondAttribute="leadingMargin" id="vRz-90-YYw"/>
+                                                <constraint firstItem="Rb4-Ub-1ky" firstAttribute="leading" secondItem="739-LI-MAZ" secondAttribute="trailing" constant="8" id="y1r-AW-LJ2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="tweetTextView" destination="HXW-kE-ZVi" id="CX6-bq-kX8"/>
@@ -83,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="-702"/>
+            <point key="canvasLocation" x="921" y="-728"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H2I-F3-5oK">
