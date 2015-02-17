@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A7E7C691-5315-4EA0-95AE-D7F3AF5D8E02</string>
+	<key>IDESourceControlProjectName</key>
+	<string>swiftでtwitterclient app</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EEC50A449AB7574AC37D47C39A56A585B798896C</key>
+		<string>https://github.com/aritaku/swift-twitterclient-app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>swiftでtwitterclient app.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EEC50A449AB7574AC37D47C39A56A585B798896C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/aritaku/swift-twitterclient-app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EEC50A449AB7574AC37D47C39A56A585B798896C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EEC50A449AB7574AC37D47C39A56A585B798896C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>swift%E3%81%A6%E3%82%99twitterclient%20app</string>
+		</dict>
+	</array>
+</dict>
+</plist>

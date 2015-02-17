@@ -10,12 +10,12 @@ import UIKit
 import Social
 import Accounts
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate{
     
     var myComposeView : SLComposeViewController?
     var myTwitterButton : UIButton?
     
-    var array = NSArray()
+    var tweetArray = NSDictionary()
     @IBOutlet var timelineTableview : UITableView?
     
     
@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
                         in
                         
-                        array = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions(), error: nil)
+                        tweetArray = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions(), error: nil)
                         
                         if (self.array.count != 0) {
                             //dispatch_async(dispatch_get_main_queue(), timelineTableview?.reloadData())
@@ -124,7 +124,7 @@ func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> In
 
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    var cell :UITableViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell",forIndexPath: indexPath) as UITableViewCell
+    Twittercell = tableView.dequeueReusableCellWithIdentifier("TweetCell",forIndexPath: indexPath) as UITableViewCell
     
     var tweetTextView :UITextView = cell.viewWithTag(3) as UITextView
     var userLabel :UILabel = cell.viewWithTag(1) as UILabel
@@ -134,12 +134,12 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
     //        var tweet :NSDictionary = tweetArray[indexPath.row]
     //        var userInfo :NSDictionary = tweet["user"]
     
-    var tweet :[NSDictionary] = array [indexPath.row] as NSArray
-    var userInfo :[NSDictionary] = tweet["user"]
+    var tweet :[NSDictionary] = array [indexPath.row] as NSDictionary
+    var userInfo :[NSDictionary] = tweet["user"] as NSDictionary
     
-    tweetTextView.text = String(format: "%@", tweet["text"] as NSLocale)
-    userLabel.text = String(format: "%@", locale: userInfo["name"] as NSLocale)
-    userIDLabel.text = String(format: "@%@", locale: userInfo["screen_name"] as NSLocale)
+    tweetTextView.text = NSString(format: "%@", tweet["text"] as NSLocale)
+    userLabel.text = NSString(format: "%@", locale: userInfo["name"] as NSLocale)
+    userIDLabel.text = NSString(format: "@%@", locale: userInfo["screen_name"] as NSLocale)
     
     var userImageView :NSString = userInfo["profile_user_url"]
     var userImagePathUrl :NSURL
