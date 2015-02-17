@@ -43,6 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func twitterTimeLine(){
         
+        tweetArray = nil
         var accountStore : ACAccountStore!
         let twitterAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         
@@ -123,13 +124,9 @@ func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> In
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let cell :Twittercell! = tableView.dequeueReusableCellWithIdentifier("TweetCell") as Twittercell
-
-    cell.twitterIDLabel.text = NSString(format: "@%@",["screen_name"])
-    
-    //var tweet :NSDictionary = tweetArray?[indexPath.row] as NSDictionary
-    
-    var tweet :NSMutableDictoinary = self.tweetArray?[indexPath.row] as NSMutableDictionary
+    var tweet = tweetArray[indexPath.row] as NSDictionary
     var userInfo :NSDictionary = tweet["user"] as NSDictionary
-    
+    cell.twitterIDLabel.text = NSString(format: "@%@", locale: userInfo["screen_name"] as NSLocale)
+
     return cell
 }
