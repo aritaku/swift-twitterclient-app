@@ -15,8 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var myComposeView : SLComposeViewController?
     var myTwitterButton : UIButton?
     
-    var tweetArray = NSDictionary()
-    @IBOutlet var timelineTableview : UITableView?
+    var tweetArray :NSMutableArray! = nil
+    @IBOutlet var timelineTableview : UITableView!
     
     
     @IBAction func tweetButton(sender : AnyObject) {
@@ -91,16 +91,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
                         in
                         
-                        tweetArray = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions(), error: nil)
+                        self.tweetArray = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions(), error: nil) as NSMutableArray
                         
-                        if (self.array.count != 0) {
-                            //dispatch_async(dispatch_get_main_queue(), timelineTableview?.reloadData())
-                            dispatch_async(dispatch_get_main_queue(), {self.timelineTableview?.reloadData()})
+                        if (self.tweetArray.count != 0) {
+                            dispatch_async(dispatch_get_main_queue(), {self.timelineTableview.reloadData()})
                         }
                         
                         //if(array.count)
                     })
-                    //post.performRequestWithHandler
                 }
                 
                 //tweet取得完了したらActivity Indicatorを終了
@@ -124,27 +122,14 @@ func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> In
 
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    Twittercell = tableView.dequeueReusableCellWithIdentifier("TweetCell",forIndexPath: indexPath) as UITableViewCell
+    let cell :Twittercell! = tableView.dequeueReusableCellWithIdentifier("TweetCell") as Twittercell
+
+    cell.twitterIDLabel.text = NSString(format: "@%@",["screen_name"])
     
-    var tweetTextView :UITextView = cell.viewWithTag(3) as UITextView
-    var userLabel :UILabel = cell.viewWithTag(1) as UILabel
-    var userIDLabel :UILabel = cell.viewWithTag(2) as UILabel
-    var userImageView :UIImageView = cell.viewWithTag(4) as UIImageView
+    //var tweet :NSDictionary = tweetArray?[indexPath.row] as NSDictionary
     
-    //        var tweet :NSDictionary = tweetArray[indexPath.row]
-    //        var userInfo :NSDictionary = tweet["user"]
+    var tweet :NSMutableDictoinary = self.tweetArray?[indexPath.row] as NSMutableDictionary
+    var userInfo :NSDictionary = tweet["user"] as NSDictionary
     
-    var tweet :[NSDictionary] = array [indexPath.row] as NSDictionary
-    var userInfo :[NSDictionary] = tweet["user"] as NSDictionary
-    
-    tweetTextView.text = NSString(format: "%@", tweet["text"] as NSLocale)
-    userLabel.text = NSString(format: "%@", locale: userInfo["name"] as NSLocale)
-    userIDLabel.text = NSString(format: "@%@", locale: userInfo["screen_name"] as NSLocale)
-    
-    var userImageView :NSString = userInfo["profile_user_url"]
-    var userImagePathUrl :NSURL
-    var userImagePathData :NSData
-    var imageView :UIImage! = userImageView.image
-    //
     return cell
 }
