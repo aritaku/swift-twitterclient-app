@@ -51,20 +51,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //ユーザーにtiwtter情報を使うことの許可を得る
         
-        //        let handler: ACAccountStoreRequestAccessCompletionHandler = {
-        //            granted, error in
-        //            if(!granted){
-        //                NSLog("ユーザーがアクセスを拒否しました")
-        //                return
-        //            }
-        //
-        //            let twitterAccounts = accountStore.accountsWithAccountType(twitterAccountType)
-        //            NSLog("twitterAccounts = \(twitterAccounts)")
-        //            if(twitterAccounts.count > 0){
-        //                let account = twitterAccounts[0] as ACAccount
-        //                NSLog("account = \(account)")
-        //            }
-        //        }
+                let handler: ACAccountStoreRequestAccessCompletionHandler = {
+                    granted, error in
+                    if(!granted){
+                        NSLog("ユーザーがアクセスを拒否しました")
+                        return
+                    }
+        
+                    let twitterAccounts = accountStore.accountsWithAccountType(twitterAccountType)
+                    NSLog("twitterAccounts = \(twitterAccounts)")
+                    if(twitterAccounts.count > 0){
+                        let account = twitterAccounts[0] as ACAccount
+                        NSLog("account = \(account)")
+                    }
+                }
         accountStore.requestAccessToAccountsWithType(twitterAccountType, options: nil){
             
             granted, error in
@@ -128,11 +128,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //一旦標準のUITableViewCellにて表示
-        let cell :UITableViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as UITableViewCell
+        //TwitterCellクラスに変更
+        let cell :Twittercell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as Twittercell
         if (tweetArray.count > 0) {
             var tweet = tweetArray[indexPath.row] as NSDictionary
             var userInfo :NSDictionary = tweet["user"] as NSDictionary
-            cell.textLabel?.text = userInfo["screen_name"] as NSString
+            cell.twitterIDLabel.text = userInfo["screen_name"] as NSString
+            cell.twitterNameLabel.text = userInfo["name"] as NSString
+            cell.tweetTextView.text = tweet["text"] as NSString
+            
+            var userImagePath :NSString = userInfo["profile_image_url"] as NSString
+            var userImagePathUrl = NSURL(string: userImagePath)
+            var userImagepathData = NSData(contentsOfURL: userImagePathUrl!)
+            cell.twitterIqon.image = UIImage(data: userImagepathData!)
             
         } else {
             //FIX: 読み込まれるまで、くるくるを表示させたい所
