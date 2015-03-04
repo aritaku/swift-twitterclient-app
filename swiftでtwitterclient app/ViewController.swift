@@ -30,12 +30,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.twitterTimeLine()
         
         //pull to refresh
-        var refreshControll = UIRefreshControl()
-        refreshControll.addTarget(self, action: Selector(nilLiteral: twitterTimeLine()), forControlEvents: UIControlEvents.ValueChanged)
+          var refreshControll = UIRefreshControl()
+//        refreshControll.addTarget(self, action: Selector(nilLiteral: twitterTimeLine()), forControlEvents: UIControlEvents.ValueChanged)
+
+        refreshControll.addTarget(self, action: "twitterTimeLine", forControlEvents: UIControlEvents.ValueChanged)
+        self.timelineTableview.addSubview(refreshControll)
         
         // resize cell height automatically
-        self.timelineTableview.estimatedRowHeight = 100
-        self.timelineTableview.rowHeight = UITableViewAutomaticDimension
+//        self.timelineTableview.estimatedRowHeight = 100
+//        self.timelineTableview.rowHeight = UITableViewAutomaticDimension
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,12 +126,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    //書かなくてよい
-    //
-    //func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    //    return 1
-    //}
-    
+        
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweetArray.count
     }
