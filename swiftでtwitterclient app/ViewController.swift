@@ -30,9 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.twitterTimeLine()
         
         //pull to refresh
-          var refreshControll = UIRefreshControl()
-//        refreshControll.addTarget(self, action: Selector(nilLiteral: twitterTimeLine()), forControlEvents: UIControlEvents.ValueChanged)
-
+        var refreshControll = UIRefreshControl()
         refreshControll.addTarget(self, action: "twitterTimeLine", forControlEvents: UIControlEvents.ValueChanged)
         self.timelineTableview.addSubview(refreshControll)
         
@@ -126,7 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-        
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweetArray.count
     }
